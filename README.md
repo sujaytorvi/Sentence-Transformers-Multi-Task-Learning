@@ -3,19 +3,20 @@
 
 This repository contains the implementation of a multi-task transformer model using TensorFlow and Keras. The model is designed to handle two NLP tasks simultaneously: Named Entity Recognition (NER) and Sentiment Analysis. 
 
+
 ## Table of Contents
 - [Overview](#overview)
 - [Requirements](#requirements)
 - [Usage](#usage)
   - [Training the Model](#training-the-model)
   - [Predicting Embeddings](#predicting-embeddings)
+- [Explanation of Sentence Transformer and Multi-Task Transformer Model](#explanation-of-sentence-transformer-and-multi-task-transformer-model)
+- [Task 3: Training Considerations](#task-3-training-considerations)
 - [Custom Learning Rate Schedule](#custom-learning-rate-schedule)
-- [Sentence Transformer and Multi-Task Transformer Model]
-- [Task 3: Training Considerations]
-- [Key Decisions and Insights]
+- [Task 4: Layer-Wise Learning Rate Implementation](#task-4-layer-wise-learning-rate-implementation)
+- [Key Decisions and Insights](#key-decisions-and-insights)
 - [References](#references)
 
-## Overview
 The goal of this project is to demonstrate the implementation, training, and optimization of a multi-task learning model, particularly focusing on transformers. The model shares a common transformer backbone and has task-specific heads for NER and Sentiment Analysis.
 
 ## Requirements
@@ -96,7 +97,8 @@ class CustomLearningRateSchedule(tf.keras.optimizers.schedules.LearningRateSched
         }
 ```
 
-## Sentence Transformer and Multi-Task Transformer Model
+
+## Explanation of Sentence Transformer and Multi-Task Transformer Model
 
 The sentence transformer model is designed to convert sentences into fixed-length vector representations, capturing semantic meaning. It uses a transformer architecture, which is effective in handling the relationships between words in a sentence. By utilizing multi-head attention mechanisms, it can focus on different parts of the sentence simultaneously, creating rich, contextual embeddings.
 
@@ -135,4 +137,3 @@ For Task 4, implementing a custom learning rate scheduler was crucial for fine-t
 - [Keras](https://keras.io/)
 
 Feel free to raise an issue or submit a pull request if you have any suggestions or improvements!
-
