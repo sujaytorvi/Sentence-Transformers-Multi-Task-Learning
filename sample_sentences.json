@@ -1,0 +1,24 @@
+{
+    "sentences": [
+        {
+            "text": "I love this product, it works great!",
+            "task_a_ner": [0, 0, 0, 0, 0, 0, 0],
+            "task_b_sentiment": 1
+        },
+        {
+            "text": "The service was terrible and I will not return.",
+            "task_a_ner": [0, 0, 0, 0, 0, 0, 0, 0],
+            "task_b_sentiment": 0
+        },
+        {
+            "text": "New York is an amazing city with vibrant culture.",
+            "task_a_ner": [1, 1, 0, 0, 0, 0, 0, 0, 0],
+            "task_b_sentiment": 1
+        },
+        {
+            "text": "I had a bad experience with the customer support.",
+            "task_a_ner": [0, 0, 0, 0, 0, 0, 0, 0, 0],
+            "task_b_sentiment": 0
+        }
+    ]
+}
