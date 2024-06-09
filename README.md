@@ -10,7 +10,9 @@ This repository contains the implementation of a multi-task transformer model us
   - [Training the Model](#training-the-model)
   - [Predicting Embeddings](#predicting-embeddings)
 - [Custom Learning Rate Schedule](#custom-learning-rate-schedule)
-- [Docker Setup](#docker-setup)
+- [Sentence Transformer and Multi-Task Transformer Model]
+- [Task 3: Training Considerations]
+- [Key Decisions and Insights]
 - [References](#references)
 
 ## Overview
