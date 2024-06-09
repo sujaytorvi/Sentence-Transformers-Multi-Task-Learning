@@ -9,7 +9,8 @@ This repository contains the implementation of a multi-task transformer model us
 - [Usage](#usage)
   - [Training the Model](#training-the-model)
   - [Predicting Embeddings](#predicting-embeddings)
-- [Custom Learning Rate Schedule](#custom-learning-rate-schedule))
+- [Custom Learning Rate Schedule](#custom-learning-rate-schedule)
+- [Docker Setup](#docker-setup)
 - [References](#references)
 
 ## Overview
@@ -93,9 +94,43 @@ class CustomLearningRateSchedule(tf.keras.optimizers.schedules.LearningRateSched
         }
 ```
 
+## Sentence Transformer and Multi-Task Transformer Model
+
+The sentence transformer model is designed to convert sentences into fixed-length vector representations, capturing semantic meaning. It uses a transformer architecture, which is effective in handling the relationships between words in a sentence. By utilizing multi-head attention mechanisms, it can focus on different parts of the sentence simultaneously, creating rich, contextual embeddings.
+
+The multi-task transformer model extends this idea by sharing the transformer backbone across multiple NLP tasks. In this project, we handle Named Entity Recognition (NER) and Sentiment Analysis using a single transformer backbone. Each task has its own output head, allowing the model to leverage shared knowledge from the transformer while providing specialized outputs for each task. This approach improves efficiency and often results in better overall performance by sharing learned representations.
+
+## Task 3: Training Considerations
+
+### Freezing the Entire Network
+If the entire network is frozen, it means no weights will be updated during training. This approach is useful when the model is already pre-trained and we want to use it for inference without further fine-tuning. The advantage is that it preserves the learned features, but the downside is that it doesn't adapt to new data.
+
+### Freezing Only the Transformer Backbone
+Freezing only the transformer backbone while allowing the task-specific heads to train can be beneficial when the backbone is pre-trained on a large corpus. This way, we retain the generalized language understanding of the transformer and adapt only the task-specific parts to our new tasks. This approach balances preserving useful pre-trained features and tailoring the model to specific tasks.
+
+### Freezing Only One of the Task-Specific Heads
+Freezing only one task-specific head allows us to improve the performance of the other task without affecting the frozen one. This is useful in scenarios where one task is well-learned and we want to focus on improving the other. It ensures stability for the frozen task while allowing flexibility for the other.
+
+### Transfer Learning Approach
+For transfer learning, we would start with a pre-trained transformer model like BERT. Initially, we would freeze the transformer layers and train only the task-specific heads to adapt them to our tasks. After achieving satisfactory performance, we could unfreeze some of the transformer layers to fine-tune the entire model. This approach leverages the rich, pre-trained features of models like BERT while allowing customization for specific tasks.
+
+## Task 4: Layer-Wise Learning Rate Implementation
+
+### Rationale for Specific Learning Rates
+Using a custom learning rate scheduler allows us to set different learning rates for different layers. Typically, lower learning rates are set for pre-trained layers to avoid disrupting their learned features, while higher learning rates are used for newly added layers to enable faster adaptation. This strategy helps in achieving stable and effective training.
+
+## Key Decisions and Insights
+
+### Task 3 and Task 4 Summary
+In Task 3, we discussed various training scenarios, emphasizing the balance between preserving pre-trained features and adapting to new tasks. The rationale behind freezing strategies and the approach to transfer learning were highlighted to leverage the strengths of pre-trained models effectively.
+
+For Task 4, implementing a custom learning rate scheduler was crucial for fine-tuning the model efficiently. By assigning lower learning rates to pre-trained layers and higher rates to new layers, we achieved a balance between stability and adaptability. These strategies collectively enhance the model's performance and robustness, making it well-suited for multi-task learning scenarios.
+
+
 
 ## References
 - [TensorFlow](https://www.tensorflow.org/)
 - [Keras](https://keras.io/)
 
 Feel free to raise an issue or submit a pull request if you have any suggestions or improvements!
+
